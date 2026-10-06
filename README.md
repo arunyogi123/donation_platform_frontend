@@ -1,29 +1,78 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+rontend Architecture
 
-# Run and deploy your AI Studio app
+The frontend is organized into separate layers:
 
-This contains everything you need to run your app locally.
+Components
 
-View your app in AI Studio: https://ai.studio/apps/c7b0edec-4224-48f3-bba8-178c9fab1899
+Reusable UI components for campaigns, donations, navigation, branding, and receipts.
 
-## Run Locally
+Pages
 
-**Prerequisites:**  Node.js
+Application-level screens such as campaigns, donations, authentication, profiles, receipts, and informational pages.
 
+Services
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+The service layer communicates with the backend REST API:
 
-## Access from another device on your network
+account.ts — authentication, profile, and creator documents
+campaigns.ts — campaign operations and campaign documents
+donations.ts — one-time and recurring donations
+payments.ts — payment URL generation and payment flow
+receipts.ts — billing and receipt information
 
-Start the project with `../start.sh` from the project root, then open
-`http://<computer-lan-ip>:3000` on the other device. The frontend and backend
-bind to all network interfaces, and API requests use the same hostname on port
-8000. The backend's development CORS and host settings allow these requests.
-Allow ports 3000 and 8000 through your computer's firewall if prompted. These
-development settings should not be exposed to an untrusted network.
+Context
+
+AuthContext.tsx manages authentication state throughout the application.
+
+Lib
+
+Shared application utilities:
+
+API client
+Authentication utilities
+Media URL handling
+Router
+
+The custom router handles client-side navigation and route parameters without relying on an external routing library.
+
+API Integration
+
+The frontend communicates with the backend through REST API endpoints for:
+
+User authentication
+User profiles
+Campaigns
+Campaign documents
+Donations
+Recurring donations
+Payments
+Receipts and billing
+
+The service layer also contains development fallback/mock data for selected campaign, donation, and billing functionality.
+
+Running Locally
+Prerequisites
+Node.js
+npm
+Install dependencies
+npm install
+Environment variables
+
+Create a local environment file based on .env.example and configure the required API/environment values.
+
+Do not commit .env files containing private credentials or API keys.
+
+Start development server
+npm run dev
+
+The Vite development server runs on port 3000.
+
+Build for production
+npm run build
+Type check
+npm run lint
+Project Status
+
+The frontend currently contains the core user-facing functionality for the GiveHope donation platform, including campaign discovery, authentication, donations, recurring donations, payment flow, receipts, user profiles, and campaign creation.
+
+The frontend is designed to work with the corresponding backend REST API.
