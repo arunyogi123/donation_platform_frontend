@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { campaignService } from '../services/campaigns';
-import { Campaign } from '../types';
-import { Link } from '../router';
-import { DonationForm } from '../components/donation/DonationForm';
-import { ArrowLeft, Shield } from 'lucide-react';
+import React, { useEffect, useState } from "react";
+import { campaignService } from "../services/campaigns";
+import { Campaign } from "../types";
+import { Link } from "../router";
+import { DonationForm } from "../components/donation/DonationForm";
+import { ArrowLeft, Shield } from "lucide-react";
 
 interface DonatePageProps {
   id: number;
@@ -37,7 +37,9 @@ export const DonatePage: React.FC<DonatePageProps> = ({ id }) => {
   if (!campaign) {
     return (
       <div className="max-w-xl mx-auto px-4 py-20 text-center space-y-4">
-        <h2 className="font-serif text-2xl font-semibold text-[#1C1917]">Campaign Not Found</h2>
+        <h2 className="font-serif text-2xl font-semibold text-[#1C1917]">
+          Campaign Not Found
+        </h2>
         <Link
           href="/campaigns"
           className="inline-flex items-center gap-2 text-xs font-semibold text-[#0D5C3A]"
