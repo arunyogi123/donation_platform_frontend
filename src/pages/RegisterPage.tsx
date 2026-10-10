@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { useAuth } from '../context/AuthContext';
-import { Link, useRouter } from '../router';
-import { Lock, Mail, User, Phone, AlertCircle, Loader2 } from 'lucide-react';
-import { GiveHopeLogo } from '../components/brand/GiveHopeLogo';
+import React, { useState } from "react";
+import { useAuth } from "../context/AuthContext";
+import { Link, useRouter } from "../router";
+import { Lock, Mail, User, Phone, AlertCircle, Loader2 } from "lucide-react";
+import { GiveHopeLogo } from "../components/brand/GiveHopeLogo";
 
 export const RegisterPage: React.FC = () => {
   const { register } = useAuth();
   const router = useRouter();
 
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [password, setPassword] = useState('');
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -23,20 +23,27 @@ export const RegisterPage: React.FC = () => {
     try {
       await register({
         full_name: fullName.trim(),
-        username: fullName.trim().replace(/\s+/g, '_'),
+        username: fullName.trim().replace(/\s+/g, "_"),
         email: email.trim(),
         phone: phone.trim(),
         password,
       });
-      router.push('/profile');
+      router.push("/profile");
     } catch (err: any) {
-      let msg = 'Registration failed. Please check your information and try again.';
+      let msg =
+        "Registration failed. Please check your information and try again.";
       if (err.data) {
-        if (typeof err.data === 'string') msg = err.data;
-        else if (err.data.email) msg = Array.isArray(err.data.email) ? err.data.email[0] : String(err.data.email);
-        else if (err.data.password) msg = Array.isArray(err.data.password) ? err.data.password[0] : String(err.data.password);
+        if (typeof err.data === "string") msg = err.data;
+        else if (err.data.email)
+          msg = Array.isArray(err.data.email)
+            ? err.data.email[0]
+            : String(err.data.email);
+        else if (err.data.password)
+          msg = Array.isArray(err.data.password)
+            ? err.data.password[0]
+            : String(err.data.password);
         else if (err.data.detail) msg = err.data.detail;
-      } else if (err.message && err.message !== 'NETWORK_UNREACHABLE') {
+      } else if (err.message && err.message !== "NETWORK_UNREACHABLE") {
         msg = err.message;
       }
       setError(msg);
@@ -49,15 +56,20 @@ export const RegisterPage: React.FC = () => {
     <div className="max-w-md mx-auto px-4 py-16 sm:py-24">
       <div className="bg-white border border-[#E7E5E0] rounded-xl p-8 sm:p-10 shadow-xs space-y-6">
         <div className="text-center space-y-2">
-          <Link href="/" className="inline-flex justify-center hover:opacity-90 transition-opacity">
+          <Link
+            href="/"
+            className="inline-flex justify-center hover:opacity-90 transition-opacity"
+          >
             <GiveHopeLogo size="lg" />
           </Link>
-          <h1 className="text-lg font-semibold text-[#1C1917] pt-2">Create a GiveHope account</h1>
+          <h1 className="text-lg font-semibold text-[#1C1917] pt-2">
+            Create a GiveHope account
+          </h1>
           <p className="text-xs text-[#78716C]">
-            Join as a donor or fundraiser to support verified humanitarian missions.
+            Join as a donor or fundraiser to support verified humanitarian
+            missions.
           </p>
         </div>
-
 
         {error && (
           <div className="p-3 bg-red-50 border border-red-200 rounded-md flex items-start gap-2 text-xs text-red-800">
@@ -68,7 +80,9 @@ export const RegisterPage: React.FC = () => {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-xs font-semibold text-[#57534E] mb-1">Full Name</label>
+            <label className="block text-xs font-semibold text-[#57534E] mb-1">
+              Full Name
+            </label>
             <div className="relative">
               <input
                 type="text"
@@ -83,7 +97,9 @@ export const RegisterPage: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-[#57534E] mb-1">Email Address</label>
+            <label className="block text-xs font-semibold text-[#57534E] mb-1">
+              Email Address
+            </label>
             <div className="relative">
               <input
                 type="email"
@@ -114,7 +130,9 @@ export const RegisterPage: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-[#57534E] mb-1">Password</label>
+            <label className="block text-xs font-semibold text-[#57534E] mb-1">
+              Password
+            </label>
             <div className="relative">
               <input
                 type="password"
@@ -146,8 +164,11 @@ export const RegisterPage: React.FC = () => {
         </form>
 
         <div className="text-center pt-2 border-t border-[#F5F4F0] text-xs text-[#78716C]">
-          Already have an account?{' '}
-          <Link href="/login" className="font-semibold text-[#0D5C3A] hover:underline">
+          Already have an account?{" "}
+          <Link
+            href="/login"
+            className="font-semibold text-[#0D5C3A] hover:underline"
+          >
             Sign in
           </Link>
         </div>
