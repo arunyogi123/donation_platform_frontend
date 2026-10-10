@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { useAuth } from '../context/AuthContext';
-import { Link, useRouter } from '../router';
-import { Lock, Mail, AlertCircle, Loader2 } from 'lucide-react';
-import { GiveHopeLogo } from '../components/brand/GiveHopeLogo';
+import React, { useState } from "react";
+import { useAuth } from "../context/AuthContext";
+import { Link, useRouter } from "../router";
+import { Lock, Mail, AlertCircle, Loader2 } from "lucide-react";
+import { GiveHopeLogo } from "../components/brand/GiveHopeLogo";
 
 export const LoginPage: React.FC = () => {
   const { login } = useAuth();
   const router = useRouter();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -20,10 +20,13 @@ export const LoginPage: React.FC = () => {
 
     try {
       await login({ email, password });
-      const redirectUrl = router.query.redirect || '/profile';
+      const redirectUrl = router.query.redirect || "/profile";
       router.push(redirectUrl);
     } catch (err: any) {
-      setError(err.message || 'Invalid email or password. Please verify your credentials.');
+      setError(
+        err.message ||
+          "Invalid email or password. Please verify your credentials.",
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -33,15 +36,19 @@ export const LoginPage: React.FC = () => {
     <div className="max-w-md mx-auto px-4 py-16 sm:py-24">
       <div className="bg-white border border-[#E7E5E0] rounded-xl p-8 sm:p-10 shadow-xs space-y-6">
         <div className="text-center space-y-2">
-          <Link href="/" className="inline-flex justify-center hover:opacity-90 transition-opacity">
+          <Link
+            href="/"
+            className="inline-flex justify-center hover:opacity-90 transition-opacity"
+          >
             <GiveHopeLogo size="lg" />
           </Link>
-          <h1 className="text-lg font-semibold text-[#1C1917] pt-2">Sign in to your account</h1>
+          <h1 className="text-lg font-semibold text-[#1C1917] pt-2">
+            Sign in to your account
+          </h1>
           <p className="text-xs text-[#78716C]">
             Track your donations, recurring pledges, and official receipts.
           </p>
         </div>
-
 
         {error && (
           <div className="p-3 bg-red-50 border border-red-200 rounded-md flex items-start gap-2 text-xs text-red-800">
@@ -70,7 +77,9 @@ export const LoginPage: React.FC = () => {
 
           <div>
             <div className="flex justify-between items-center mb-1">
-              <label className="block text-xs font-semibold text-[#57534E]">Password</label>
+              <label className="block text-xs font-semibold text-[#57534E]">
+                Password
+              </label>
             </div>
             <div className="relative">
               <input
@@ -102,8 +111,11 @@ export const LoginPage: React.FC = () => {
         </form>
 
         <div className="text-center pt-2 border-t border-[#F5F4F0] text-xs text-[#78716C]">
-          Don’t have an account?{' '}
-          <Link href="/register" className="font-semibold text-[#0D5C3A] hover:underline">
+          Don’t have an account?{" "}
+          <Link
+            href="/register"
+            className="font-semibold text-[#0D5C3A] hover:underline"
+          >
             Register here
           </Link>
         </div>

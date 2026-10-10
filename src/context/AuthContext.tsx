@@ -1,7 +1,7 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { clearTokens, getStoredProfile, getStoredTokens } from '../lib/auth';
-import { accountService } from '../services/account';
-import { LoginRequest, RegisterRequest, UserProfile } from '../types';
+import React, { createContext, useContext, useState, useEffect } from "react";
+import { clearTokens, getStoredProfile, getStoredTokens } from "../lib/auth";
+import { accountService } from "../services/account";
+import { LoginRequest, RegisterRequest, UserProfile } from "../types";
 
 interface AuthContextType {
   user: UserProfile | null;
@@ -15,8 +15,12 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<UserProfile | null>(() => getStoredProfile());
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  const [user, setUser] = useState<UserProfile | null>(() =>
+    getStoredProfile(),
+  );
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -97,7 +101,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
 };
