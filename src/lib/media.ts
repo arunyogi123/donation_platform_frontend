@@ -1,6 +1,6 @@
 import { API_BASE_URL } from './api';
 
-export const DEFAULT_CAMPAIGN_IMAGE = '/src/assets/images/campaign_health_maya_1790232042675.jpg';
+export const DEFAULT_CAMPAIGN_IMAGE = '/src/assets/images/campaign_health.jpg';
 
 /**
  * Normalizes image and document URLs returned by the backend or local assets.
