@@ -96,19 +96,22 @@ export const useRouter = (): RouterContextType => {
 };
 
 export interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
-  href: string;
+  href?: string;
+  to?: string;
   className?: string;
   children: React.ReactNode;
 }
 
 export const Link: React.FC<LinkProps> = ({
   href,
+  to,
   className,
   children,
   onClick,
   ...rest
 }) => {
   const router = useRouter();
+  const target = href || to || '#';
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (onClick) onClick(e);
@@ -120,13 +123,14 @@ export const Link: React.FC<LinkProps> = ({
       !e.altKey
     ) {
       e.preventDefault();
-      router.push(href);
+      router.push(target);
     }
   };
 
   return (
-    <a href={href} onClick={handleClick} className={className} {...rest}>
+    <a href={target} onClick={handleClick} className={className} {...rest}>
       {children}
     </a>
   );
 };
+
