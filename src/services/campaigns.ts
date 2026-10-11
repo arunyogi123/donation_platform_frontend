@@ -113,7 +113,7 @@ export const campaignService = {
           is_active: true,
           is_approved: false,
           donor_count: 0,
-          image_url: '/src/assets/images/campaign_health_maya_1790232042675.jpg',
+          image_url: '/src/assets/images/campaign_health.jpg',
           organizer_name: 'You (Organizer)',
           created_at: new Date().toISOString(),
         };
