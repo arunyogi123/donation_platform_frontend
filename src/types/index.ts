@@ -5,6 +5,15 @@
 
 export type BackendCategory = 'HEALTH' | 'EDUCATION' | 'NATURAL DISASTER';
 
+export type CampaignCategory =
+  | BackendCategory
+  | 'Medical'
+  | 'Education'
+  | 'Disaster Relief'
+  | 'Community'
+  | 'Environment'
+  | 'Emergency';
+
 export type Currency = 'NPR' | 'USD' | 'INR';
 
 export type RecurringTiming = 'WEEKLY' | 'MONTHLY' | 'YEARLY';
