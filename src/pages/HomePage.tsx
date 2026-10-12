@@ -4,6 +4,7 @@ import { Campaign } from "../types";
 import { Link } from "../router";
 import { CampaignCard } from "../components/campaign/CampaignCard";
 import { CampaignProgress } from "../components/campaign/CampaignProgress";
+import { DonorCarousel } from "../components/donor/DonorCarousel";
 import { getMediaUrl } from "../lib/media";
 import {
   ArrowRight,
@@ -85,17 +86,9 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            {/* Right Hero Image Asset */}
+            {/* Right Hero: Live Benefactors Vertical Stream (replaces image) */}
             <div className="lg:col-span-6">
-              <div className="relative aspect-16/10 sm:aspect-16/11 rounded-lg overflow-hidden border border-[#E7E5E0] shadow-sm bg-[#F5F4F0]">
-                <img
-                  src="/src/assets/images/humanatarian.jpg"
-                  alt="Humanitarian community care and medical solidarity in rural clinic"
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover object-center"
-                  loading="eager"
-                />
-              </div>
+              <DonorCarousel variant="hero" />
             </div>
           </div>
         </div>

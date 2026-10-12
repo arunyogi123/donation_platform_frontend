@@ -28,7 +28,8 @@ export const RegisterPage: React.FC = () => {
         phone: phone.trim(),
         password,
       });
-      router.push("/profile");
+      const redirectUrl = router.query.redirect || "/profile";
+      router.push(redirectUrl);
     } catch (err: any) {
       let msg =
         "Registration failed. Please check your information and try again.";
@@ -166,7 +167,11 @@ export const RegisterPage: React.FC = () => {
         <div className="text-center pt-2 border-t border-[#F5F4F0] text-xs text-[#78716C]">
           Already have an account?{" "}
           <Link
-            href="/login"
+            href={
+              router.query.redirect
+                ? `/login?redirect=${encodeURIComponent(router.query.redirect)}`
+                : "/login"
+            }
             className="font-semibold text-[#0D5C3A] hover:underline"
           >
             Sign in

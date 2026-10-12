@@ -1,5 +1,9 @@
 import { apiClient } from '../lib/api';
-import { mockUserDonations, mockRecurringDonations } from '../mock/donations';
+import {
+  mockUserDonations,
+  mockRecurringDonations,
+  mockPublicDonors,
+} from '../mock/donations';
 import {
   DonationRecord,
   OneTimeDonationPayload,
@@ -7,6 +11,7 @@ import {
   RecurringDonationPayload,
   RecurringDonationRecord,
   RecurringDonationResponse,
+  PublicDonor,
 } from '../types';
 
 export const donationService = {
@@ -154,6 +159,25 @@ export const donationService = {
     } catch (err: any) {
       if (err.status === 0 || err.message === 'NETWORK_UNREACHABLE') {
         return mockRecurringDonations;
+      }
+      throw err;
+    }
+  },
+
+  /**
+   * GET /api/donations/public-donors/
+   * Public list of donors and aggregated contribution totals
+   */
+  async getPublicDonors(): Promise<PublicDonor[]> {
+    try {
+      const res = await apiClient<PublicDonor[]>('api/donations/public-donors/', {
+        method: 'GET',
+        requiresAuth: false,
+      });
+      return res.data;
+    } catch (err: any) {
+      if (err.status === 0 || err.message === 'NETWORK_UNREACHABLE') {
+        return mockPublicDonors;
       }
       throw err;
     }

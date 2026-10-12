@@ -54,6 +54,8 @@ export const campaignService = {
     image_url?: string;
     document?: File | null;
     document_type?: string;
+    organizer_name?: string;
+    location?: string;
   }): Promise<Campaign> {
     let body: FormData;
     let fallbackTitle = 'New Campaign';
@@ -74,6 +76,13 @@ export const campaignService = {
       body.append('category', data.category);
       body.append('goal_amount', String(data.goal_amount));
       body.append('is_active', String(data.is_active ?? true));
+
+      if (data.organizer_name) {
+        body.append('organizer_name', data.organizer_name);
+      }
+      if (data.location) {
+        body.append('location', data.location);
+      }
 
       if (data.image) {
         body.append('image', data.image);

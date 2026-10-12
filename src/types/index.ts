@@ -188,3 +188,14 @@ export interface BillingRecord {
   created_at: string;
   updated_at: string;
 }
+
+export interface PublicDonor {
+  id: number;
+  username: string;
+  full_name?: string;
+  profile_picture?: string | null;
+  total_donated: number;
+  currency: string;
+  donation_count: number;
+  last_donated?: string | null;
+}
